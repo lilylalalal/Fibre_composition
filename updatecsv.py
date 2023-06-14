@@ -1,18 +1,26 @@
 import csv
-from task2 import *
-#SortoutinColmun() 
-#cleaning()
-#Abbreviation()
-def updatecsv(csvfile,fibrecomp,data):
+import pandas as pd  
+from task2 import*
 
-    with open(csvfile,'w') as file:
-            writer = csv.writer(file)
-            
-            writer.writerow(data)
-   
+def removecolomun(fibrecsv,newcsv):
+    with open(fibrecsv, "r") as source:
+        reader = csv.reader(source)
+        with open(newcsv,'w') as result:
+              writer = csv.writer(result)
+              for row in reader:  
+                  writer.writerow((row[0],row[1],row[2],row[3]))
+                  
+        result.close()
+    source.close()
+    return newcsv
+
+def addcolumn(removedcolomun,fibrelist,title):
+     data_new = pd.read_csv(removedcolomun)
+     data_new[title] = fibrelist    
+     data_new.to_csv('data_new.csv')   
 
 
-fibrecompArr = SortoutinColmun("Copy_zedonkfibre.csv",'Textile Content')
-cleanedArr = cleaning(fibrecompArr)
-data = Abbreviation(cleanedArr)
-updatecsv("Copy_zedonkfibre.csv",'Textile Content',data)
+fibrelist = SortoutinColmun("Copy_zedonkfibre.csv","Textile Content")
+print(fibrelist )
+removedcolomun = removecolomun("Copy_zedonkfibre.csv","newfile.csv")
+addcolumn(removedcolomun,fibrelist,"Textile Content")
