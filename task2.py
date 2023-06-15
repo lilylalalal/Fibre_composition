@@ -11,10 +11,9 @@ def cleaning(array):
 
 
 def Abbreviation(fibrecompArr):
-
     newlist = []
     abblist = [('POLY ' , 'POLYESTER') , ('NYLN ' , 'POLYAMIDE'),
-('VSCS ' ,'VISCOSE'),('SPX ' ,'ELASTANE'),('CTN ' , 'COTTON'),('','FABRIC')]
+('VSCS ' ,'VISCOSE'),('SPX ' ,'ELASTANE'),('CTN ' , 'COTTON'),('','FABRIC'),('','CONNECTIVE'),('METAL.','METALLISED')]
     #print(type(abblist))
     #split the full composition into wording.
     for fibrestring in fibrecompArr:
@@ -30,6 +29,23 @@ def Abbreviation(fibrecompArr):
         #print(fibrecompArr)
     return  newlist
     
+def simplfy(newfibrecompArr):
+    shortedlist =[]
+    for row in newfibrecompArr:
+        if len(row) >= 100 :
+            row = row.strip()
+            newrow = re.sub('\s+ ',' ',row)
+            
+            if len(newrow) >= 100 :
+                newrow = newrow+'**'
+                print(newrow,': len is ',len(newrow))
+                shortedlist.append(newrow)
+            else:
+                shortedlist.append(newrow)
+        else:
+            shortedlist.append(row)
+    return shortedlist
+
 def SortoutinColmun(fibrecsv,fibrecomp):
     colmun = []
     fieldnames = ["Product ID","Style","Fabric","Colour","Textile Content"]
@@ -40,13 +56,12 @@ def SortoutinColmun(fibrecsv,fibrecomp):
         cleanedcolmun = cleaning(colmun)
         #use Abbreviation() to turn some of the fibre name into short form like turning POLYAMIDE to NLYN, turning POLYESTER to POLY...
         abbcolmun = Abbreviation(cleanedcolmun)
+        shorted = simplfy(abbcolmun)
     csv_file.close()
-    return abbcolmun
+    return shorted
 
 
-   
-            
-            
+
                 
    
     

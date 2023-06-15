@@ -10,18 +10,23 @@ garment composition.
 This task will help the generated composition list to streamdown the word count upto the Zedonk 
 limit.
 
-"TASK ONE: Read csv file"
+"TASK ONE: Read & duplicate csv file - Copy(csvfile)"
 -Importing csv library 
 -Duplicate the fibercomp.csv file and read
 
-"TASK TWO: find the fiber comp from the csv file and put into an array
+"TASK TWO: find the fiber comp from the csv file and put into an array - SortoutinColmun(fibrecsv,fibrecomp)"
 -Identify the 'Textile Content'(04) column 
 -Pull the fibre content into the array "[fibrecompArr]"
 
-"TASK THREE: Abbreviation(fibrecompArr)" *****
--Add below Abbreviation Dict into the Abbreviation() function 
--Compare the fibrecompArr with the Abbreviation list ****
--If the word/dict.value match than change the word to dict.key ******* 
+"TASK TWO.FIVE: HELPER FUNCTION" 
+Cleaning(Arr)
+-Data cleaning by removing excessive spacing
+-Removing extra info like (EOD),(EOS) ,(detail from the Other fibre)
+Abbreviation(fibrecompArr)
+-Add below Abbreviation tuple-list into the Abbreviation() function 
+-Compare the fibrecompArr with each tuple.
+-If the word match than change the tuple[1] means there is abbreviation avalible to simplfy the wording.
+-Replace the tuple[0] as word
 -Return newfibrecomp array
 "Abbreviation Fibre list"
 'POLY' : 'POLYESTER'
@@ -29,8 +34,9 @@ limit.
 'VSCS' : 'VISCOSE'
  'SPX' : 'ELASTANE'
  'CTN' : 'COTTON'
+and more ...
 
- "TASK FOUR: textcount(newfibrecompArr)"
+simplfy(newfibrecompArr)
 -newlist = []
 -set 'maxcount' = 100
 -Use For loop to count every newfibrecomp in the array.
@@ -42,6 +48,10 @@ the maxcount)
 -return 'newlist'
 
 
-"TASK FIVE: write csv file with the new list "
+"TASK THREE: write csv file with the new list "
+Removecolomun(fibrecsv,newcsv)
 -replace the "Textile Content" colmune with the "new list"
+-removing the "Textile Content" from the old data
+Addcolumn(removedcolomun,fibrelist,title)
+- Add "Textile Content" with new fibre list (after simplfied)
 -save and exit the csv file
