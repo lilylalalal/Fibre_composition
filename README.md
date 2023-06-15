@@ -1,15 +1,23 @@
-#Upload Fibre_composition to ZeDonk
-
-
-
-##Fibre name abbreviation
 "Overveiw"
 Zedonk data base has word count limit of 100 for each composition cell.
 However, garment styles usually contain 2 or more fabric and trim item which need to disclose as a 
 garment composition.
 This task will help the generated composition list to streamdown the word count upto the Zedonk 
 limit.
+--------------------------------------------------------------------------------------------
 
+Update Excel File (Master Line Sheet)
+
+Read Excel file 
+- Have openpyxl import load_workbook
+-read the excel file
+-appoint to the needed sheet(filename['sheet'])
+-Loop in the sheet and appointed the needed row(row['SKU'])
+-Pull the raw data into an array
+
+pull data to the required sheet
+
+##Fibre name abbreviation
 "TASK ONE: Read & duplicate csv file - Copy(csvfile)"
 -Importing csv library 
 -Duplicate the fibercomp.csv file and read
@@ -55,3 +63,5 @@ Removecolomun(fibrecsv,newcsv)
 Addcolumn(removedcolomun,fibrelist,title)
 - Add "Textile Content" with new fibre list (after simplfied)
 -save and exit the csv file
+
+#Upload Fibre_composition to ZeDonk

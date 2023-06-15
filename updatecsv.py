@@ -21,6 +21,6 @@ def addcolumn(removedcolomun,fibrelist,title):
 
 
 fibrelist = SortoutinColmun("Copy_zedonkfibre.csv","Textile Content")
-print(fibrelist )
+#print(fibrelist )
 removedcolomun = removecolomun("Copy_zedonkfibre.csv","newfile.csv")
 addcolumn(removedcolomun,fibrelist,"Textile Content")
